@@ -678,6 +678,16 @@ local function character_get_current_palette_number(localIndex)
     return gCSPlayers[localIndex].presetPalette
 end
 
+---@description A function that gets a character's palette data from their character number and alt number
+---@added 1.x
+---@return table?
+---@param charNum integer
+---@param altNum integer
+local function character_get_palette_index(charNum, altNum)
+    local model = characterTable[charNum][altNum].model
+    return characterColorPresets[model] ~= nil and characterColorPresets[model][altNum] or nil
+end
+
 ---@description A function that searches for a character's table posision based on name
 ---@added 1
 ---@param name string
@@ -1246,6 +1256,7 @@ _G.charSelect = {
     character_set_current_number = character_set_current_number,
     character_get_current_palette = character_get_current_palette,
     character_get_current_palette_number = character_get_current_palette_number,
+    character_get_palette_index = character_get_palette_index,
     character_get_number_from_string = character_get_number_from_string,
     character_get_number_from_model = character_get_number_from_model,
     character_get_voice = character_get_voice,
